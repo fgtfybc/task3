@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnshu.dao.RoleMapper">
+  <resultMap id="BaseResultMap" type="com.jnshu.pojo.Role">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="jur" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="creatBy" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="creatAt" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="updateBy" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="updateAt" javaType="java.lang.Long" jdbcType="BIGINT" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, jur, creatBy, creatAt, updateBy, updateAt
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from role
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from role
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.jnshu.pojo.Role">
+    insert into role (id, name, jur, 
+      creatBy, creatAt, updateBy, 
+      updateAt)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{jur,jdbcType=VARCHAR}, 
+      #{creatby,jdbcType=VARCHAR}, #{creatat,jdbcType=BIGINT}, #{updateby,jdbcType=VARCHAR}, 
+      #{updateat,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jnshu.pojo.Role">
+    insert into role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="jur != null">
+        jur,
+      </if>
+      <if test="creatby != null">
+        creatBy,
+      </if>
+      <if test="creatat != null">
+        creatAt,
+      </if>
+      <if test="updateby != null">
+        updateBy,
+      </if>
+      <if test="updateat != null">
+        updateAt,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="jur != null">
+        #{jur,jdbcType=VARCHAR},
+      </if>
+      <if test="creatby != null">
+        #{creatby,jdbcType=VARCHAR},
+      </if>
+      <if test="creatat != null">
+        #{creatat,jdbcType=BIGINT},
+      </if>
+      <if test="updateby != null">
+        #{updateby,jdbcType=VARCHAR},
+      </if>
+      <if test="updateat != null">
+        #{updateat,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jnshu.pojo.Role">
+    update role
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="jur != null">
+        jur = #{jur,jdbcType=VARCHAR},
+      </if>
+      <if test="creatby != null">
+        creatBy = #{creatby,jdbcType=VARCHAR},
+      </if>
+      <if test="creatat != null">
+        creatAt = #{creatat,jdbcType=BIGINT},
+      </if>
+      <if test="updateby != null">
+        updateBy = #{updateby,jdbcType=VARCHAR},
+      </if>
+      <if test="updateat != null">
+        updateAt = #{updateat,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jnshu.pojo.Role">
+    update role
+    set name = #{name,jdbcType=VARCHAR},
+      jur = #{jur,jdbcType=VARCHAR},
+      creatBy = #{creatby,jdbcType=VARCHAR},
+      creatAt = #{creatat,jdbcType=BIGINT},
+      updateBy = #{updateby,jdbcType=VARCHAR},
+      updateAt = #{updateat,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectRole" resultType="Role" parameterType="Role">
+  select * from role
+  </select>
+</mapper>

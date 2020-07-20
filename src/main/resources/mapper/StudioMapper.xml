@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnshu.dao.StudioMapper">
+  <resultMap id="BaseResultMap" type="com.jnshu.pojo.Studio">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="type" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="img" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="creatBy" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="creatAt" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="updateBy" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="updateAt" javaType="java.lang.Long" jdbcType="BIGINT" />
+    </constructor>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.jnshu.pojo.Studio">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="type" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="img" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="creatBy" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="creatAt" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="updateBy" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="updateAt" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="context" javaType="java.lang.String" jdbcType="LONGVARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, type, img, creatBy, creatAt, updateBy, updateAt
+  </sql>
+  <sql id="Blob_Column_List">
+    context
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from studio
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from studio
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.jnshu.pojo.Studio">
+    insert into studio (id, type, img, 
+      creatBy, creatAt, updateBy, 
+      updateAt, context)
+    values (#{id,jdbcType=BIGINT}, #{type,jdbcType=INTEGER}, #{img,jdbcType=VARCHAR}, 
+      #{creatby,jdbcType=VARCHAR}, #{creatat,jdbcType=BIGINT}, #{updateby,jdbcType=VARCHAR}, 
+      #{updateat,jdbcType=BIGINT}, #{context,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jnshu.pojo.Studio">
+    insert into studio
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="img != null">
+        img,
+      </if>
+      <if test="creatby != null">
+        creatBy,
+      </if>
+      <if test="creatat != null">
+        creatAt,
+      </if>
+      <if test="updateby != null">
+        updateBy,
+      </if>
+      <if test="updateat != null">
+        updateAt,
+      </if>
+      <if test="context != null">
+        context,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="img != null">
+        #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="creatby != null">
+        #{creatby,jdbcType=VARCHAR},
+      </if>
+      <if test="creatat != null">
+        #{creatat,jdbcType=BIGINT},
+      </if>
+      <if test="updateby != null">
+        #{updateby,jdbcType=VARCHAR},
+      </if>
+      <if test="updateat != null">
+        #{updateat,jdbcType=BIGINT},
+      </if>
+      <if test="context != null">
+        #{context,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jnshu.pojo.Studio">
+    update studio
+    <set>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="img != null">
+        img = #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="creatby != null">
+        creatBy = #{creatby,jdbcType=VARCHAR},
+      </if>
+      <if test="creatat != null">
+        creatAt = #{creatat,jdbcType=BIGINT},
+      </if>
+      <if test="updateby != null">
+        updateBy = #{updateby,jdbcType=VARCHAR},
+      </if>
+      <if test="updateat != null">
+        updateAt = #{updateat,jdbcType=BIGINT},
+      </if>
+      <if test="context != null">
+        context = #{context,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.jnshu.pojo.Studio">
+    update studio
+    set type = #{type,jdbcType=INTEGER},
+      img = #{img,jdbcType=VARCHAR},
+      creatBy = #{creatby,jdbcType=VARCHAR},
+      creatAt = #{creatat,jdbcType=BIGINT},
+      updateBy = #{updateby,jdbcType=VARCHAR},
+      updateAt = #{updateat,jdbcType=BIGINT},
+      context = #{context,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jnshu.pojo.Studio">
+    update studio
+    set type = #{type,jdbcType=INTEGER},
+      img = #{img,jdbcType=VARCHAR},
+      creatBy = #{creatby,jdbcType=VARCHAR},
+      creatAt = #{creatat,jdbcType=BIGINT},
+      updateBy = #{updateby,jdbcType=VARCHAR},
+      updateAt = #{updateat,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectStudio" resultType="Studio" parameterType="Studio">
+  select * from studio
+  </select>
+</mapper>
