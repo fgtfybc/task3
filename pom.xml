@@ -79,7 +79,7 @@
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
-      <version>8.0.16</version>
+      <version>8.0.28</version>
     </dependency>
 
     <!--spring依赖包，包括
@@ -320,7 +320,7 @@
             <dependency>
               <groupId>mysql</groupId>
               <artifactId>mysql-connector-java</artifactId>
-              <version>5.1.40</version>
+              <version>8.0.28</version>
             </dependency>
           </dependencies>
         </plugin>
